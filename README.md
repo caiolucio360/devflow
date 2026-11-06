@@ -29,11 +29,6 @@ the points where a human should decide.
 
 ## 🧰 The commands
 
-> [!NOTE]
-> This repository is growing one pull request at a time. Today only `/devflow:help` is installed
-> with the plugin. `feature`, `bugfix`, `api-sync` and `ship` arrive in the next PRs; their
-> behaviour is already described in the [plugin README](plugins/devflow/README.md).
-
 | Command | What it does |
 |---|---|
 | [`/devflow:feature`](plugins/devflow/README.md#devflowfeature) | New behaviour, from idea to pull requests |
