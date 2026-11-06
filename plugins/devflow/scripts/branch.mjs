@@ -25,19 +25,39 @@ function assertReady(repo, name) {
   }
 }
 
+/** Fetches origin and confirms origin/<base> resolves, so no switch runs against a stale or missing ref. */
+function assertBaseReachable(repo, base) {
+  try {
+    git(repo.root, "fetch", "origin", "--quiet");
+  } catch (error) {
+    throw new Error(`${repo.role} (${repo.root}) cannot fetch origin: ${error.message}`);
+  }
+  try {
+    git(repo.root, "rev-parse", "--verify", "--quiet", `origin/${base}`);
+  } catch {
+    throw new Error(`${repo.role} (${repo.root}) has no origin/${base}`);
+  }
+}
+
 function create(repo, name, from) {
-  git(repo.root, "fetch", "origin", "--quiet");
   git(repo.root, "switch", "-c", name, `origin/${from}`);
   // Created from origin/<from>, git tracks it; a push would then target the base branch.
   git(repo.root, "branch", "--unset-upstream");
 }
 
+/**
+ * Checks every repository before the first `switch -c`: each must be clean, lack the branch, fetch
+ * and have origin/<base>. If any check fails, nothing is created in any repository.
+ * Not guaranteed: a git failure during `create` itself, after all checks passed, can leave the
+ * repositories before the failing one on the new branch. Nothing is rolled back.
+ */
 export function createPaired(root, name, from) {
   assertBranchName(name);
   const config = loadConfig(root);
   const repos = repositories(root, config);
   const base = from ?? config.baseBranch;
   repos.forEach((repo) => assertReady(repo, name));
+  repos.forEach((repo) => assertBaseReachable(repo, base));
   repos.forEach((repo) => create(repo, name, base));
   return repos.map((repo) => `${repo.role}: ${name} from origin/${base}`);
 }

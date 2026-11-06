@@ -71,6 +71,30 @@ describe("createPaired", () => {
     assert.equal(git(front.clone, "branch", "--list", "fix/typo"), "");
   });
 
+  it("creates nothing when the base branch exists only in the front's origin", () => {
+    const { front, back } = makeWorkspace();
+    git(front.seed, "push", "-q", "origin", "dev:staging");
+
+    assert.throws(() => createPaired(front.clone, "feature/x", "staging"), /backend .* has no origin\/staging/);
+
+    for (const repo of [front, back]) {
+      assert.equal(git(repo.clone, "rev-parse", "--abbrev-ref", "HEAD"), "dev", "both repositories stay on their original branch");
+      assert.equal(git(repo.clone, "branch", "--list", "feature/x"), "", "no new branch in either repository");
+    }
+  });
+
+  it("creates nothing when the sibling cannot be fetched", () => {
+    const { parent, front, back } = makeWorkspace();
+    git(back.clone, "remote", "set-url", "origin", path.join(parent, "unreachable.git"));
+
+    assert.throws(() => createPaired(front.clone, "fix/typo"), /backend .* cannot fetch origin/);
+
+    for (const repo of [front, back]) {
+      assert.equal(git(repo.clone, "rev-parse", "--abbrev-ref", "HEAD"), "dev", "both repositories stay on their original branch");
+      assert.equal(git(repo.clone, "branch", "--list", "fix/typo"), "", "no new branch in either repository");
+    }
+  });
+
   it("rejects an invalid name before touching anything", () => {
     const { front } = makeWorkspace();
     assert.throws(() => createPaired(front.clone, "feat/x"), /is not <prefix>/);
