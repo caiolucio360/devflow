@@ -1,0 +1,12 @@
+{
+  "name": "devflow",
+  "description": "Workflow commands for projects split into a backend and a frontend repository.",
+  "owner": { "name": "Caio Lucio" },
+  "plugins": [
+    {
+      "name": "devflow",
+      "source": "./plugins/devflow",
+      "description": "Commands that run a change across a backend and a frontend repository: sync, plan, tests first, verify, review, ship."
+    }
+  ]
+}
