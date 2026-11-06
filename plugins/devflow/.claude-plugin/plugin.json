@@ -2,5 +2,5 @@
   "name": "devflow",
   "description": "Commands that run a change across a backend and a frontend repository: sync, plan, tests first, verify, review, ship.",
   "author": { "name": "Caio Lucio" },
-  "repository": "https://github.com/caiolucio360/devflow"
+  "repository": "https://github.com/caiolucio360/devflow-ai"
 }
