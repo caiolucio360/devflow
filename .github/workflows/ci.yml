@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Script tests
+        run: node --test "test/*.test.mjs"
+      - name: Manifests are valid and agree
+        run: node scripts/check-manifests.mjs
+      - name: Every skill has a README section
+        run: bash scripts/check-readme.sh
