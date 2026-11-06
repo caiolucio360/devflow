@@ -187,7 +187,7 @@ plugins/devflow/
   README.md                          the per-command reference; /devflow:help reads it
   shared/conventions.md              the rules every command injects
   scripts/                           sync.mjs, branch.mjs and lib/
-  skills/help/SKILL.md               /devflow:help
+  skills/<name>/SKILL.md             one per command: feature, bugfix, api-sync, ship, help
 scripts/                             check-manifests.mjs, check-readme.sh
 test/                                tests for the scripts above
 ```

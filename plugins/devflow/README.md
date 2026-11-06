@@ -100,8 +100,9 @@ Fixes existing behaviour at its root cause.
 
 Makes the frontend agree with the backend contract.
 
-1. Generate the contract in the backend and stop if the contract file did not change.
-2. Regenerate the frontend types and type-check.
+1. Generate the contract in the backend and report whether it differs from `origin/<baseBranch>`;
+   an unchanged contract is reported, not a reason to stop.
+2. Regenerate the frontend types and type-check, always.
 3. List what broke, by file, with what each place must do.
 
 **Approval points:** none.
@@ -115,14 +116,17 @@ Makes the frontend agree with the backend contract.
 
 Ends any change: verification, review, pull request.
 
-1. Rebase on a fresh `origin/<baseBranch>`.
+1. Rebase on a fresh `origin/<target>`, where the target is `main` for `hotfix/*` and `release/*`
+   and `<baseBranch>` otherwise. Uncommitted work is stashed first and restored after; a conflict
+   stops the command and the user decides.
 2. Run `verify`, then `crap`; fix every method at 15 or above.
-3. `/devflow:api-sync` when the backend changed.
+3. `/devflow:api-sync` when the backend changed, then `verify` again in the frontend.
 4. ⏸ Three reviewers in parallel (simplicity, bugs, conventions); the user picks what to apply.
 5. Update the docs the change affects.
 6. ⏸ Show the commit and PR text; then commit, lint, push.
-7. Open the PR to `<baseBranch>`. When both repositories changed, two PRs that link each other; the
-   backend merges first.
+7. Open the PR to the target. A `hotfix/*` or `release/*` branch also gets a second PR to
+   `<baseBranch>`. When both repositories changed, two PRs that link each other; the backend merges
+   first.
 8. Watch CI to green.
 
 **Approval points:** the review findings and the push.
