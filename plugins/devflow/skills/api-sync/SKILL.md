@@ -1,6 +1,7 @@
 ---
 name: api-sync
 description: Brings the frontend's API types in line with the backend contract and lists what broke. Use when the backend changed an endpoint or DTO, or to check that the two repositories agree. Do not use for changes that do not touch the API.
+allowed-tools: Bash(cat:*)
 ---
 
 # /devflow:api-sync

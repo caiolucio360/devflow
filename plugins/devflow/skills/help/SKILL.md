@@ -1,6 +1,7 @@
 ---
 name: help
 description: Lists the devflow commands or explains one of them. Use when unsure which devflow command fits a task, or for onboarding to the workflow.
+allowed-tools: Bash(cat:*)
 argument-hint: "[command]"
 ---
 

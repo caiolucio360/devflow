@@ -1,6 +1,7 @@
 ---
 name: ship
 description: Takes finished work through verification, review and a pull request. Use at the end of any change, including ones made without /devflow:feature or /devflow:bugfix. It verifies each repository that changed, checks CRAP, reviews in parallel, then opens the PR, or two linked PRs when both repositories changed.
+allowed-tools: Bash(cat:*) Bash(node:*)
 ---
 
 # /devflow:ship
