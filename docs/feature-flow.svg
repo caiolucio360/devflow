@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 838 512" role="img" aria-labelledby="t d">
+  <title id="t">The /devflow:feature flow</title>
+  <desc id="d">Understand: sync, discovery, explore, then approve questions and design. Build: create the branch, approve the plan, backend, API sync, frontend. Ship: verify, approve review findings, approve commit and push, then pull requests and green CI.</desc>
+  <style>
+    .bg { fill: #ffffff; stroke: #d0d7de; }
+    .card { fill: #f6f8fa; stroke: #d0d7de; }
+    .gate { fill: #fff8c5; stroke: #d4a72c; }
+    .gate-mark { fill: #9a6700; }
+    .arrow { fill: none; stroke: #8c959f; stroke-width: 1.5; }
+    .arrow-head { fill: #8c959f; }
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .title { font-size: 14px; font-weight: 600; fill: #1f2328; }
+    .detail { font-size: 12px; fill: #59636e; }
+    .head { font-size: 12px; font-weight: 700; letter-spacing: 1.2px; fill: #0969da; }
+    .tag { font-size: 12px; fill: #59636e; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; stroke: #30363d; }
+      .card { fill: #161b22; stroke: #30363d; }
+      .gate { fill: #272115; stroke: #9e6a03; }
+      .gate-mark { fill: #d29922; }
+      .arrow { stroke: #6e7681; }
+      .arrow-head { fill: #6e7681; }
+      .title { fill: #e6edf3; }
+      .detail, .tag { fill: #9198a1; }
+      .head { fill: #4493f8; }
+    }
+  </style>
+  <rect class="bg" x="0.5" y="0.5" width="837" height="511" rx="12"/>
+  <text class="head" x="32" y="52">UNDERSTAND</text>
+  <rect class="card" x="30" y="78" width="230" height="56" rx="8"/>
+  <text class="title" x="46" y="102">Sync</text>
+  <text class="detail" x="46" y="121">both repositories</text>
+  <path class="arrow" d="M145 137V149"/><path class="arrow-head" d="M141 148L145 154L149 148Z"/>
+  <rect class="card" x="30" y="156" width="230" height="56" rx="8"/>
+  <text class="title" x="46" y="180">Discovery</text>
+  <text class="detail" x="46" y="199">docs, specs, ADRs</text>
+  <path class="arrow" d="M145 215V227"/><path class="arrow-head" d="M141 226L145 232L149 226Z"/>
+  <rect class="card" x="30" y="234" width="230" height="56" rx="8"/>
+  <text class="title" x="46" y="258">Explore</text>
+  <text class="detail" x="46" y="277">one subagent per repo</text>
+  <path class="arrow" d="M145 293V305"/><path class="arrow-head" d="M141 304L145 310L149 304Z"/>
+  <rect class="gate" x="30" y="312" width="230" height="56" rx="8"/>
+  <text class="title" x="46" y="336">Questions and design</text>
+  <text class="detail" x="46" y="355">you approve</text>
+  <rect class="gate-mark" x="234" y="333" width="3.5" height="14" rx="1"/><rect class="gate-mark" x="241" y="333" width="3.5" height="14" rx="1"/>
+  <path class="arrow" d="M263 340H272.5Q282.5 340 282.5 330V116Q282.5 106 292.5 106H297"/><path class="arrow-head" d="M296 102L302 106L296 110Z"/>
+  <text class="head" x="306" y="52">BUILD</text>
+  <rect class="card" x="304" y="78" width="230" height="56" rx="8"/>
+  <text class="title" x="320" y="102">Create the branch</text>
+  <text class="detail" x="320" y="121">same name in both repos</text>
+  <path class="arrow" d="M419 137V149"/><path class="arrow-head" d="M415 148L419 154L423 148Z"/>
+  <rect class="gate" x="304" y="156" width="230" height="56" rx="8"/>
+  <text class="title" x="320" y="180">Plan</text>
+  <text class="detail" x="320" y="199">you approve</text>
+  <rect class="gate-mark" x="508" y="177" width="3.5" height="14" rx="1"/><rect class="gate-mark" x="515" y="177" width="3.5" height="14" rx="1"/>
+  <path class="arrow" d="M419 215V227"/><path class="arrow-head" d="M415 226L419 232L423 226Z"/>
+  <rect class="card" x="304" y="234" width="230" height="56" rx="8"/>
+  <text class="title" x="320" y="258">Backend</text>
+  <text class="detail" x="320" y="277">tests first</text>
+  <path class="arrow" d="M419 293V305"/><path class="arrow-head" d="M415 304L419 310L423 304Z"/>
+  <rect class="card" x="304" y="312" width="230" height="56" rx="8"/>
+  <text class="title" x="320" y="336">API sync</text>
+  <text class="detail mono" x="320" y="355">/devflow:api-sync</text>
+  <path class="arrow" d="M419 371V383"/><path class="arrow-head" d="M415 382L419 388L423 382Z"/>
+  <rect class="card" x="304" y="390" width="230" height="56" rx="8"/>
+  <text class="title" x="320" y="414">Frontend</text>
+  <text class="detail" x="320" y="433">tests first</text>
+  <path class="arrow" d="M537 418H546.5Q556.5 418 556.5 408V116Q556.5 106 566.5 106H571"/><path class="arrow-head" d="M570 102L576 106L570 110Z"/>
+  <text class="head" x="580" y="52">SHIP</text>
+  <text class="tag mono" x="806" y="52" text-anchor="end">/devflow:ship</text>
+  <rect class="card" x="578" y="78" width="230" height="56" rx="8"/>
+  <text class="title" x="594" y="102">Verify</text>
+  <text class="detail" x="594" y="121">verify and CRAP check</text>
+  <path class="arrow" d="M693 137V149"/><path class="arrow-head" d="M689 148L693 154L697 148Z"/>
+  <rect class="gate" x="578" y="156" width="230" height="56" rx="8"/>
+  <text class="title" x="594" y="180">Review findings</text>
+  <text class="detail" x="594" y="199">you pick what to apply</text>
+  <rect class="gate-mark" x="782" y="177" width="3.5" height="14" rx="1"/><rect class="gate-mark" x="789" y="177" width="3.5" height="14" rx="1"/>
+  <path class="arrow" d="M693 215V227"/><path class="arrow-head" d="M689 226L693 232L697 226Z"/>
+  <rect class="gate" x="578" y="234" width="230" height="56" rx="8"/>
+  <text class="title" x="594" y="258">Commit and push</text>
+  <text class="detail" x="594" y="277">you approve the text</text>
+  <rect class="gate-mark" x="782" y="255" width="3.5" height="14" rx="1"/><rect class="gate-mark" x="789" y="255" width="3.5" height="14" rx="1"/>
+  <path class="arrow" d="M693 293V305"/><path class="arrow-head" d="M689 304L693 310L697 304Z"/>
+  <rect class="card" x="578" y="312" width="230" height="56" rx="8"/>
+  <text class="title" x="594" y="336">Pull requests</text>
+  <text class="detail" x="594" y="355">then CI green</text>
+  <rect class="gate-mark" x="32" y="471" width="3.5" height="14" rx="1"/><rect class="gate-mark" x="39" y="471" width="3.5" height="14" rx="1"/>
+  <text class="detail" x="52" y="482">Approval point: nothing after it happens until you say so</text>
+</svg>
