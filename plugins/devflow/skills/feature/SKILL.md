@@ -1,6 +1,7 @@
 ---
 name: feature
 description: Builds a feature across the backend and frontend repositories, with a plan, tests first and approval gates. Use for new behaviour, anything that touches both repositories, an architecture decision, or a change of three or more files. Do not use for a small, already-defined change (do it directly, then run /devflow:ship) or for a bug (use /devflow:bugfix).
+allowed-tools: Bash(cat:*) Bash(node:*)
 argument-hint: "<description of the feature>"
 ---
 

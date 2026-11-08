@@ -1,6 +1,7 @@
 ---
 name: bugfix
 description: Fixes a bug at its root cause with a regression test proved to fail without the fix. Use when existing behaviour is wrong. Do not use when the "bug" is a new requirement (use /devflow:feature). For a bug already in production that cannot wait for the next release, the command works on a hotfix branch from main.
+allowed-tools: Bash(cat:*) Bash(node:*)
 argument-hint: "<issue number or description>"
 ---
 
