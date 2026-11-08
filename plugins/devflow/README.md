@@ -24,10 +24,18 @@ In each repository's `.claude/settings.json`:
 ```json
 {
   "extraKnownMarketplaces": {
-    "devflow": { "source": { "source": "github", "repo": "caiolucio360/devflow-ai", "ref": "main" } }
+    "devflow": {
+      "source": {
+        "source": "github",
+        "repo": "caiolucio360/devflow-ai",
+        "ref": "main"
+      }
+    }
   },
   "enabledPlugins": { "devflow@devflow": true },
-  "permissions": { "additionalDirectories": ["<path to the other repository>"] }
+  "permissions": {
+    "additionalDirectories": ["<path to the other repository>"]
+  }
 }
 ```
 

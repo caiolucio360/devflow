@@ -46,10 +46,18 @@ The full per-command reference, with every step, is in [`plugins/devflow/README.
 ```json
 {
   "extraKnownMarketplaces": {
-    "devflow": { "source": { "source": "github", "repo": "caiolucio360/devflow-ai", "ref": "main" } }
+    "devflow": {
+      "source": {
+        "source": "github",
+        "repo": "caiolucio360/devflow-ai",
+        "ref": "main"
+      }
+    }
   },
   "enabledPlugins": { "devflow@devflow": true },
-  "permissions": { "additionalDirectories": ["<path to the other repository>"] }
+  "permissions": {
+    "additionalDirectories": ["<path to the other repository>"]
+  }
 }
 ```
 
@@ -65,8 +73,16 @@ To try it once without editing settings: `/plugin install devflow --marketplace 
   "baseBranch": "dev",
   "verify": ["npm run lint", "npm run test", "npm run build"],
   "crap": "npm run crap",
-  "contract": { "generate": "npm run api:generate", "check": "npx tsc --noEmit" },
-  "docs": { "repo": ".", "specs": "docs/specs", "plans": "docs/plans", "index": "docs/index.md" }
+  "contract": {
+    "generate": "npm run api:generate",
+    "check": "npx tsc --noEmit"
+  },
+  "docs": {
+    "repo": ".",
+    "specs": "docs/specs",
+    "plans": "docs/plans",
+    "index": "docs/index.md"
+  }
 }
 ```
 
@@ -81,25 +97,10 @@ The values above are an example. The meaning of each key is in the
 
 ## 🔀 The feature flow
 
-`/devflow:feature` is the longest command. The ⏸ nodes are approval points: the command stops and
-asks, and goes on only after you say so.
+`/devflow:feature` is the longest command. The amber steps are approval points: the command stops
+and asks, and goes on only after you say so.
 
-```mermaid
-flowchart TD
-    A["Sync both repositories"] --> B["Discovery: docs, specs, ADRs"]
-    B --> C["Explore: one subagent per repository"]
-    C --> D{{"⏸ Questions and design"}}
-    D --> E["Same branch in both repositories"]
-    E --> F{{"⏸ Plan"}}
-    F --> G["Backend first, tests first"]
-    G --> H["/devflow:api-sync"]
-    H --> I["Frontend, tests first"]
-    I --> J["/devflow:ship"]
-    J --> K["Verify and CRAP check"]
-    K --> L{{"⏸ Review findings"}}
-    L --> M{{"⏸ Commit and push"}}
-    M --> N["Pull requests, then CI green"]
-```
+![The /devflow:feature flow. Understand: sync, discovery, explore, then approve questions and design. Build: create the branch, approve the plan, backend, API sync, frontend. Ship: verify, approve review findings, approve commit and push, then pull requests and green CI.](docs/feature-flow.svg)
 
 ## 🔎 Which command
 
@@ -180,14 +181,15 @@ bash scripts/check-readme.sh
 ## 🗂 Project layout
 
 ```text
-.claude-plugin/marketplace.json      the marketplace (named devflow)
-.github/workflows/ci.yml             tests and checks on every pull request
+.claude-plugin/marketplace.json   the marketplace (named devflow)
+.github/workflows/ci.yml          tests and checks on every PR
+docs/feature-flow.svg             the diagram in this README
 plugins/devflow/
-  .claude-plugin/plugin.json         the plugin manifest
-  README.md                          the per-command reference; /devflow:help reads it
-  shared/conventions.md              the rules every command injects
-  scripts/                           sync.mjs, branch.mjs and lib/
-  skills/<name>/SKILL.md             one per command: feature, bugfix, api-sync, ship, help
-scripts/                             check-manifests.mjs, check-readme.sh
-test/                                tests for the scripts above
+  .claude-plugin/plugin.json      the plugin manifest
+  README.md                       per-command reference for /devflow:help
+  shared/conventions.md           the rules every command injects
+  scripts/                        sync.mjs, branch.mjs and lib/
+  skills/<name>/SKILL.md          one per command
+scripts/                          check-manifests.mjs, check-readme.sh
+test/                             tests for the scripts above
 ```
